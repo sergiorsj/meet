@@ -1,4 +1,6 @@
-# meet
+# Meet App
+A progressive web app with a serverless backend which deplays events from user's calendar.
+
 ### Feature 1 - Display Events
 
 Scenario 1:
