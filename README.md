@@ -15,8 +15,6 @@ Scenario 3:
 Given the user has typed in a city in the search bar
 When they select a city from the suggested list
 Then events for the selected city should be displayed.
-Feature 2: Show/Hide Event Details
-User Story 1: As a user, I want event details to be collapsed by default. User Story 2: As a user, I want to be able to expand an event to see its details. User Story 3: As a user, I want to be able to collapse an event to hide its details.
 
 ### Feature 2 - Show/Hide Event Details
 
