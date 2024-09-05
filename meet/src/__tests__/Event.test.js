@@ -22,4 +22,8 @@ describe('<Event /> component', () => {
         expect(EventComponent.queryByText(mockData[0].description)).toBeInTheDocument;
     });
 
+    test('has an element with "list" role', () => {
+        expect(EventComponent.queryByText('Show')).toBeInTheDocument;
+    });
+
 });
