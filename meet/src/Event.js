@@ -1,7 +1,12 @@
 
-const Event = () => {
+const Event = ({event}) => {
     return (
-      <li></li>
+      <>
+      <li>{event.summary}</li>
+      <li>{event.location}</li>
+      <li>{event.created}</li>
+      <li>{event.description}</li>
+      </>
     );
   }
   

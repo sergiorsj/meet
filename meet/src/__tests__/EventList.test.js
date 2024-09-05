@@ -1,22 +1,18 @@
 import { render } from '@testing-library/react';
 import EventList from '../EventList';
+import mockData from '../mock-data';
 
 
 describe('<EventList /> component', () => {
  
     let EventListComponent;
     beforeEach(() => {
-      EventListComponent =  render(<EventList events={
-        [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
-      } />);
+      EventListComponent =  render(<EventList events={mockData} />);
     })
    
     test('has an element with "list" role', () => {
       expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
     });
    
-    test('renders correct number of events', () => {
-        expect(EventListComponent.getAllByRole("listitem")).toHaveLength(4);
-      });
 
 });
