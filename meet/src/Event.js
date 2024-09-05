@@ -9,8 +9,8 @@ const Event = ({event}) => {
       <li>{event.location}</li>
       <li>{event.created}</li>
      
-      <button> {
-        show ?  "Hide" : "Show"
+      <button onClick={() => setShow(!show)}> {
+        show ?  "Hid details" : "Show details"
       }</button>
       {
         show ? <div>{event.description}</div> 
