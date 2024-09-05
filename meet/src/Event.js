@@ -8,10 +8,14 @@ const Event = ({event}) => {
       <li>{event.summary}</li>
       <li>{event.location}</li>
       <li>{event.created}</li>
-      <li>{event.description}</li>
+     
       <button> {
         show ?  "Hide" : "Show"
       }</button>
+      {
+        show ? <div>{event.description}</div> 
+        : ''
+      }
       </>
     );
   }
