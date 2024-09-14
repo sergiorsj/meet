@@ -1,10 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 
-export default function NumberOfEvent({ allLocations }) {
-
-  const [eventNumber, seteventNumber] = useState("");
-
+export default function NumberOfEvent({ seteventNumber,  eventNumber}) {
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
@@ -12,9 +9,10 @@ export default function NumberOfEvent({ allLocations }) {
   }
 
   return (
-    <div id="city-search">
+    <div id="eventNumber">
       <input
         type="text"
+        role="textbox"
         className="eventNumber"
         placeholder="Enter a number"
         value={eventNumber}
