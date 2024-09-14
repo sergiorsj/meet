@@ -8,8 +8,12 @@ describe('<NumberOfEvent /> component', () => {
     NumberOfEventDOM = render(<NumberOfEvent eventNumber="10" seteventNumber={()=>{}} />);
   })
 
-  test('renders list of events', () => {
+  test('renders EVENT NUMBER', () => {
     expect(NumberOfEventDOM.queryByRole('textbox')).toHaveValue("10");
+  });
+
+  test('conatins field', () => {
+    expect(NumberOfEventDOM.queryByRole('textbox')).toBeInTheDocument()
   });
 
 });
