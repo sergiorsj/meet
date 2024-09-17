@@ -1,24 +1,21 @@
-import React from 'react'
-import { useState } from "react";
-
-export default function NumberOfEvent({ seteventNumber,  eventNumber}) {
-
+const NumberOfEvents = ({ setCurrentNOE }) => {
   const handleInputChanged = (event) => {
-    const value = event.target.value;
-    seteventNumber(value);
-  }
+      const value = event.target.value;
+  };
 
   return (
-    <div id="eventNumber">
-      <input
-        type="text"
-        role="textbox"
-        className="eventNumber"
-        placeholder="Enter a number"
-        value={eventNumber}
-        onChange={handleInputChanged}
-      />
-    
-    </div>
+      <div id="number-of-events">
+          <label>
+              Number of Events:
+          <input 
+          type="text"
+          defaultValue="32"
+          onChange={handleInputChanged}
+          data-testid="numberOfEventsInput"
+          />
+          </label>
+      </div>
   )
-}
+};
+
+export default NumberOfEvents;

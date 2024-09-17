@@ -1,27 +1,33 @@
+import NumberOfEvents from './NumberOfEvents';
 import { render } from '@testing-library/react';
-import NumberOfEvent from '../NumberOfEvent';
 import userEvent from '@testing-library/user-event';
 
+describe('<NumberOfEvents /> Component', () => {
+    let NumberOfEventsComponent;
+    
+    beforeEach(() => {
+        NumberOfEventsComponent = render(
+            <NumberOfEvents 
+                setCurrentNOE={() => {}}
+                setErrorAlert={() => {}}
+            />
+        );
+    });
 
-describe('<NumberOfEvent /> component', () => {
-  let NumberOfEventDOM;
-  beforeEach(() => {
-    NumberOfEventDOM = render(<NumberOfEvent eventNumber="10" seteventNumber={()=>{}} />);
-  })
+    test('component contains input textbox', () => {
+        const input = NumberOfEventsComponent.queryByRole('textbox');
+        expect(input).toBeInTheDocument();
+    });
+    
+    test('ensures the default value of textbox is 32', () => {
+        const input = NumberOfEventsComponent.queryByRole('textbox');
+        expect(input).toHaveValue('32');
+    });
 
-  test('renders EVENT NUMBER', () => {
-    expect(NumberOfEventDOM.queryByRole('textbox')).toHaveValue("10");
-  });
-
-  test('conatins field', () => {
-    expect(NumberOfEventDOM.queryByRole('textbox')).toBeInTheDocument()
-  });
-
-  test('Changes field', async () => {
-    const NumberOfEvent = NumberOfEventDOM.queryByRole('textbox');
-    const user = userEvent.setup();
-    await user.type(NumberOfEvent, "10");
-    expect(NumberOfEvent).toHaveValue("10");
-  });
-
-});
+    test('textbox value changes when user updates input', async () => {
+        const input = NumberOfEventsComponent.getByTestId('numberOfEventsInput');
+        const user = userEvent.setup();
+        await user.type(input, '{backspace}{backspace}10');
+        expect(input).toHaveValue('10');
+    })
+})
