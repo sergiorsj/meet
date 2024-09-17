@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import CitySearch from "./components/CitySearch";
-import EventList from "./components/EventList";
-import NumberOfEvents from "./components/NumberOfEvents";
+import CitySearch from "./CitySearch";
+import EventList from "./EventList";
+import NumberOfEvent from "./NumberOfEvent";
 import { getEvents, extractLocations } from "./api";
 import "./App.css";
 import mockData from "./mock-data";
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className="App">
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
+      <NumberOfEvent setCurrentNOE={setCurrentNOE} />
       <EventList events={events} />
     </div>
   );

@@ -1,4 +1,4 @@
-import NumberOfEvents from './NumberOfEvents';
+import NumberOfEvent from '../NumberOfEvent';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -7,7 +7,7 @@ describe('<NumberOfEvents /> Component', () => {
     
     beforeEach(() => {
         NumberOfEventsComponent = render(
-            <NumberOfEvents 
+            <NumberOfEvent 
                 setCurrentNOE={() => {}}
                 setErrorAlert={() => {}}
             />

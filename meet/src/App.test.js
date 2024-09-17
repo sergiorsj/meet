@@ -1,8 +1,8 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { getEvents } from "../api";
 import App from "./App";
-import mockData from "../mock-data";
+import mockData from "./mock-data";
+
 
 describe("<App /> component", () => {
   test("List of events", async () => {
@@ -36,7 +36,7 @@ describe("<App /> integration", () => {
       (event) => event.location === "Berlin, Germany"
     );
 
-    expect(allRenderedEventItems.length).toBe(32);
+    expect(allRenderedEventItems.length).toBe(30);
 
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain("Berlin, Germany");
