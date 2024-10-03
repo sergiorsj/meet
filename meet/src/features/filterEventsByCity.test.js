@@ -83,7 +83,7 @@ defineFeature(feature, (test) => {
         });
     
         then('their city should be changed to that city (i.e., “Berlin, Germany”)', async () => {
-    
+            expect(citySearchInput.value).toBe('Berlin');
         });
     
         and('the user should receive a list of upcoming events in that city', async () => {
