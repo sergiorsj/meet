@@ -59,5 +59,29 @@ test('User can expand an event to see details', ({ given, when, then }) => {
   });
 
 });
+
+
+test('User can collapse an event to hide details', ({ given, when, then }) => {
+    let AppComponent;
+  given('event is expanded with details', () => {
+    AppComponent = render(<App />);
+  });
+
+  when('user clicks an event', async () => {
+    const AppDOM = AppComponent.container.firstChild;
+    const EventListDOM = AppDOM.querySelector('#event-list')
+    await waitFor(() => {
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(30);
+      });
+    });
+
+  then('event is collapsed', async () => {
+    const AppDOM = AppComponent.container.firstChild;
+    const details = AppDOM.querySelector('#details');
+    expect(details).toBeNull();
+  });
+
+});
    
 });
