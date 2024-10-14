@@ -26,13 +26,38 @@ defineFeature(feature, (test) => {
   
       then('all events are displayed', async () => {
         const AppDOM = AppComponent.container.firstChild;
-        const details = AppDOM.querySelector('#details');
-        expect(details).toBeNull();
+        const details = AppDOM.querySelector('#events-list');
+        expect(details).toBeDefined();
       });
   
 });
 
 
+
+test('User specified number of event', ({ given, when, then }) => {
+    let AppComponent;
+  given('user opens the app', () => {
+    AppComponent = render(<App />);
+  });
+
+  when('user specifies number of event', async () => {
+    const user = userEvent.setup();
+    const AppDOM = AppComponent.container.firstChild;
+    const EventListDOM = AppDOM.querySelector('#number-of-events')
+    await user.type(EventListDOM, "Berlin");
+    await waitFor(() => {
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems).toBeDefined();
+      });
+    });
+
+  then('that specified number of events are displayed', async () => {
+    const AppDOM = AppComponent.container.firstChild;
+    const details = AppDOM.querySelector('#events-list');
+    expect(details).toBeDefined();
+  });
+
+});
 
 
 
