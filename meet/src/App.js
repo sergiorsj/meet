@@ -6,6 +6,7 @@ import { getEvents, extractLocations } from "./api";
 import "./App.css";
 import mockData from "./mock-data";
 import { InfoAlert } from './Alert';
+import { ErrorAlert } from './Alert';
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("")
+  const [errorAlert, setErrorAlert] = useState("")
 
   const fetchData = async () => {
     const allEvents = mockData;
@@ -33,9 +35,10 @@ const App = () => {
     <div className="App">
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
+        {errorAlert.length ? <InfoAlert text={errorAlert} /> : null}
       </div>
       <CitySearch setInfoAlert={setInfoAlert} allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvent setCurrentNOE={setCurrentNOE} />
+      <NumberOfEvent setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
       <EventList events={events} />
     </div>
   );

@@ -1,6 +1,12 @@
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const handleInputChanged = (event) => {
       const value = event.target.value;
+      if ( !value || value < 0){
+        setErrorAlert("Invalid input for NumberofEvents")
+      }
+      else {
+        setErrorAlert("")
+      }
   };
 
   return (
