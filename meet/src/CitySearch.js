@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 
-export default function CitySearch({ allLocations }) {
+export default function CitySearch({ allLocations, setInfoAlert, setCurrentCity }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -14,7 +14,24 @@ export default function CitySearch({ allLocations }) {
 
     setQuery(value);
     setSuggestions(filteredLocations);
+
+    let infoText;
+    if (filteredLocations.length === 0) {
+      infoText = "We can not find the city you are looking for. Please try another city"
+    } else {
+      infoText = ""
+    }
+    setInfoAlert(infoText);
   };
+
+  const handleItemClicked = (event) => {
+    const value = event.target.textContent;
+    setQuery(value);
+    setShowSuggestions(false);
+    setCurrentCity(value);
+    setInfoAlert("")
+  };
+
   return (
     <div id="city-search">
       <input
