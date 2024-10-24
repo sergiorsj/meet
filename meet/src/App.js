@@ -5,7 +5,7 @@ import NumberOfEvent from "./NumberOfEvent";
 import { getEvents, extractLocations } from "./api";
 import "./App.css";
 import mockData from "./mock-data";
-import { InfoAlert } from './Alert';
+import { InfoAlert, WarningAlert } from './Alert';
 import { ErrorAlert } from './Alert';
 
 
@@ -16,6 +16,7 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("")
   const [errorAlert, setErrorAlert] = useState("")
+  const [warningAlert, setWarningAlert] = useState("")
 
   const fetchData = async () => {
     const allEvents = mockData;
@@ -27,15 +28,23 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [currentCity]);
+
+    useEffect(() => {
+      if (navigator.onLine) {
+        setWarningAlert("")
+      } else {
+        setWarningAlert("You're offline! So data isn't updated currently.")
+      }
+      fetchData();
+    }, [currentCity, currentNOE]);
+
 
   return (
     <div className="App">
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <InfoAlert text={errorAlert} /> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
       <CitySearch setInfoAlert={setInfoAlert} allLocations={allLocations} setCurrentCity={setCurrentCity} />
       <NumberOfEvent setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
