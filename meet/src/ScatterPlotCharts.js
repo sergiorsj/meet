@@ -3,14 +3,12 @@ import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Responsive
 
 export default function ScatterPlotCharts({allLocations, events}) {
 const [data, setData] = useState([]);
-
 useEffect(() => {
     setData(getData())
 }, [events, allLocations])
 
 const getData = () => {
   const data =  allLocations.map((location)=> {
-    // console.log(location)
     const count = events.filter(
         (event) => event.location === location
     ).length
@@ -19,8 +17,6 @@ const getData = () => {
 })
 return data;
 }
-
-console.log(data)
     return (
       <ResponsiveContainer width="100%" height={400}>
         <ScatterChart
