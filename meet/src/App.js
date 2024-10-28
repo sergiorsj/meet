@@ -7,6 +7,8 @@ import "./App.css";
 import mockData from "./mock-data";
 import { InfoAlert, WarningAlert } from './Alert';
 import { ErrorAlert } from './Alert';
+import ScatteredPlotsChart from "./ScatterPlotCharts";
+import ScatterPlotCharts from "./ScatterPlotCharts";
 
 
 const App = () => {
@@ -46,6 +48,7 @@ const App = () => {
         {errorAlert.length ? <InfoAlert text={errorAlert} /> : null}
         {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
+      <ScatterPlotCharts allLocations={allLocations} events={events} />
       <CitySearch setInfoAlert={setInfoAlert} allLocations={allLocations} setCurrentCity={setCurrentCity} />
       <NumberOfEvent setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
       <EventList events={events} />
