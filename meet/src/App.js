@@ -51,7 +51,7 @@ const App = () => {
       </div>
       <div>
       <ScatterPlotCharts allLocations={allLocations} events={events} />
-      <PieChartComponent />
+      <PieChartComponent events={events} />
       </div>
       <CitySearch setInfoAlert={setInfoAlert} allLocations={allLocations} setCurrentCity={setCurrentCity} />
       <NumberOfEvent setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />

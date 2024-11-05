@@ -1,42 +1,49 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import React, { PureComponent, useEffect, useState } from 'react';
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
-const data01 = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-  { name: 'Group E', value: 278 },
-  { name: 'Group F', value: 189 },
-];
+export default function PieChartComponent({events}) {
+  const genres = ['React', "JavaScript", "Node", "Angular", "jQuery"]
+  const [data, setData] = useState([]);
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#d5d5d5'];
+useEffect(() => {
+    setData(getData())
+}, [events])
 
-const data02 = [
-  { name: 'Group A', value: 2400 },
-  { name: 'Group B', value: 4567 },
-  { name: 'Group C', value: 1398 },
-  { name: 'Group D', value: 9800 },
-  { name: 'Group E', value: 3908 },
-  { name: 'Group F', value: 4800 },
-];
-
-export default function PieChartComponent() {
+const getData = () => {
+  const data =  genres.map((g)=> {
+    const filterEvents = events.filter(
+        (event) => event.summary.includes(g)
+    )
+    return {name: g, value: filterEvents.length}
+})
+return data;
+}
   
     return (
-      // <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
-          <Pie
-            dataKey="value"
-            isAnimationActive={false}
-            data={data01}
-            cx="50%"
-            cy="50%"
-            outerRadius={80}
-            fill="#8884d8"
-            label
-          />
-          <Pie dataKey="value" data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" />
-          <Tooltip />
-        </PieChart>
-      // </ResponsiveContainer>
+      <ResponsiveContainer
+      width="100%"
+      height={400}
+     >
+      <PieChart>
+       <Pie
+        data={data}
+        dataKey="value"
+        nameKey="name"
+        cx="50%"
+        cy="50%"
+        outerRadius={150}
+        fill="#8884d8"
+        label={({ name, value }) => `${name}: ${value}`}
+       >
+        {data.map((entry, index) => (
+         <Cell
+          key={`cell-${index}`}
+          fill={COLORS[index % COLORS.length]}
+         />
+        ))}
+       </Pie>
+       <Tooltip />
+      </PieChart>
+     </ResponsiveContainer>
     );
   }
